@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
 
-public class Card extends Compare
+public class Card2 extends Compare
 {
     // private MayflowerImage image;
     Queue<String> clubs = new LinkedList<String>();
@@ -15,34 +15,33 @@ public class Card extends Compare
     Queue<String> kings = new LinkedList<String>();
     Queue<String> queens = new LinkedList<String>();
     Queue<String> selected;
-    int i = 0;
+    int j = 0;
     int value;
-    public Card()
+    public Card2()
     {
-        for(i = 2; i < 10; i++)
+        for(j = 2; j < 10; j++)
         {
-            clubs.add("Cards/Clubs " + i + ".png");
-
+            clubs.add("Cards/Clubs " + j + ".png");
         }
-        for(i = 2; i < 10; i++)
+        for(j = 2; j < 10; j++)
         {
-            diamonds.add("Cards/Diamonds " + i + ".png");
+            diamonds.add("Cards/Diamonds " + j + ".png");
         }
-        for(i = 2; i < 10; i++)
+        for(j = 2; j < 10; j++)
         {
-            spades.add("Cards/Spades " + i + ".png");
+            spades.add("Cards/Spades " + j + ".png");
         }
-        for(i = 2; i < 10; i++)
+        for(j = 2; j < 10; j++)
         {
-            hearts.add("Cards/Hearts " + i + ".png");
+            hearts.add("Cards/Hearts " + j + ".png");
         }
-        for(i = 1; i < 5; i++)
+        for(j = 1; j < 5; j++)
         {
-            kings.add("Cards/King " + i + ".png");
+            kings.add("Cards/King " + j + ".png");
         }
-        for(i = 1; i < 5; i++)
+        for(j = 1; j < 5; j++)
         {
-            queens.add("Cards/Queen " + i + ".png");
+            queens.add("Cards/Queen " + j + ".png");
         }
         /*randomSelect();
         shuffle(selected);
@@ -60,8 +59,7 @@ public class Card extends Compare
             shuffle(selected);
             MayflowerImage selectedImage = new MayflowerImage(selected.peek());
             selectedImage.scale(0.5);
-            setImage(selectedImage);  
-            //getValue();
+            setImage(selectedImage);   
         }
 
     }
@@ -108,7 +106,7 @@ public class Card extends Compare
 
     /*public int getValue()
     {
-          if(selected.peek() == "Clubs 2.png" || selected.peek() == "Spades 2.png" || selected.peek() == "Diamonds 2.png" ||selected.peek() == "Hearts 2.png")
+        if(selected.peek() == "Clubs 2.png" || selected.peek() == "Spades 2.png" || selected.peek() == "Diamonds 2.png" ||selected.peek() == "Hearts 2.png")
         {
             value = 2;
 
@@ -144,5 +142,6 @@ public class Card extends Compare
             value = 11;
         }
         return value;
-    }*/
+}*/
+
 }
