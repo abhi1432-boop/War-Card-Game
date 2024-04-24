@@ -9,8 +9,8 @@ public class GameWorld extends World
        addObject(card, 900, 600);
        setBackground("Solitaire.jpg");
     }
-    public void act() {
-        // Add game logic here (if any)
-        // This method is called on every game loop iteration
+    public void act() 
+     {
+        
     }
 }
