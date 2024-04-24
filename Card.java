@@ -7,7 +7,6 @@ import java.util.Collections;
 
 public class Card extends Actor
 {
-    // instance variables - replace the example below with your own
     private MayflowerImage image;
     Queue<String> clubs = new LinkedList<String>();
     Queue<String> diamonds = new LinkedList<String>();
@@ -16,7 +15,6 @@ public class Card extends Actor
     Queue<String> selected;
     public Card()
     {
-        // int i = (int)(Math.Random() * 8) + 2;
         for(int i = 2; i < 10; i++)
         {
             clubs.add("Cards/Clubs " + i + ".png");
