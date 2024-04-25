@@ -1,9 +1,9 @@
-
 import mayflower.*;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
+import javax.swing.*;
 
 public class Card extends Compare
 {
@@ -15,14 +15,18 @@ public class Card extends Compare
     Queue<String> kings = new LinkedList<String>();
     Queue<String> queens = new LinkedList<String>();
     Queue<String> selected;
+    public int score;
     int i = 0;
     int value;
+    Card2 check = new Card2();
+    private boolean shuffled = false;
+    public JLabel label1;
+    public ImageIcon imgIcon1;
     public Card()
     {
         for(i = 2; i < 10; i++)
         {
             clubs.add("Cards/Clubs " + i + ".png");
-
         }
         for(i = 2; i < 10; i++)
         {
@@ -50,20 +54,31 @@ public class Card extends Compare
          */
         //MayflowerImage selectedImage = new MayflowerImage(selected.peek());
         //selectedImage.scale(0.5);
+        //shuffleSelected();
     }
 
     public void act()
     {
+        /*if (!shuffled) {
+        randomSelect();
+        shuffle(selected);
+        shuffled = true; // Set the flag to true after shuffling
+        }*/
         if(Mayflower.isKeyDown(Keyboard.KEY_ENTER))
         {
             randomSelect();
             shuffle(selected);
             MayflowerImage selectedImage = new MayflowerImage(selected.peek());
             selectedImage.scale(0.5);
-            setImage(selectedImage);  
+            setImage(selectedImage); 
+            imgIcon1 = new ImageIcon(selected.peek());
+            
+            Mayflower.playMusic("sounds/flip.mp3");
+            System.out.println("---------------\n" + selectedImage);
             //getValue();
         }
-
+        houseScoreText();
+        guestScoreText();
     }
 
     public void randomSelect()
@@ -98,14 +113,28 @@ public class Card extends Compare
     public void shuffle(Queue queue)
     {
         List<String> list = new LinkedList<>(queue);
-
         Collections.shuffle(list);
-
         queue.clear();
         queue.addAll(list);
 
     }
 
+    public void houseScoreText() {
+        World w = getWorld();
+        w.removeText(10, 30);
+        w.showText("Score: " + score, 0, 30, Color.WHITE);
+    }
+
+    public void guestScoreText() {
+        World w = getWorld();
+        w.removeText(400, 300);
+        w.showText("Score: " + score, 0, 1020, Color.WHITE);
+    }
+
+    /*public void shuffleSelected() {
+        randomSelect(); // First, select a queue
+        shuffle(selected); // Then shuffle it
+    }*/
     /*public int getValue()
     {
     if(selected.peek() == "Clubs 2.png" || selected.peek() == "Spades 2.png" || selected.peek() == "Diamonds 2.png" ||selected.peek() == "Hearts 2.png")

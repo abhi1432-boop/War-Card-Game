@@ -24,7 +24,6 @@ public class GameWorld extends World
         /*if(card.getValue() > card2.getValue())
         {
         showText("You Won!", getWidth() / 2 - 300, getHeight() / 2, Color.WHITE);
-
         }
         }*/
     }
