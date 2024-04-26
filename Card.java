@@ -1,9 +1,9 @@
+
 import mayflower.*;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
-import javax.swing.*;
 
 public class Card extends Compare
 {
@@ -14,19 +14,15 @@ public class Card extends Compare
     Queue<String> hearts = new LinkedList<String>();
     Queue<String> kings = new LinkedList<String>();
     Queue<String> queens = new LinkedList<String>();
-    Queue<String> selected;
-    public int score;
+    Queue<String> selected = new LinkedList<String>();
     int i = 0;
     int value;
-    Card2 check = new Card2();
-    private boolean shuffled = false;
-    public JLabel label1;
-    public ImageIcon imgIcon1;
     public Card()
     {
         for(i = 2; i < 10; i++)
         {
             clubs.add("Cards/Clubs " + i + ".png");
+
         }
         for(i = 2; i < 10; i++)
         {
@@ -54,16 +50,10 @@ public class Card extends Compare
          */
         //MayflowerImage selectedImage = new MayflowerImage(selected.peek());
         //selectedImage.scale(0.5);
-        //shuffleSelected();
     }
 
     public void act()
     {
-        /*if (!shuffled) {
-        randomSelect();
-        shuffle(selected);
-        shuffled = true; // Set the flag to true after shuffling
-        }*/
         if(Mayflower.isKeyDown(Keyboard.KEY_ENTER))
         {
             randomSelect();
@@ -71,14 +61,15 @@ public class Card extends Compare
             MayflowerImage selectedImage = new MayflowerImage(selected.peek());
             selectedImage.scale(0.5);
             setImage(selectedImage); 
-            imgIcon1 = new ImageIcon(selected.peek());
-            
-            Mayflower.playMusic("sounds/flip.mp3");
-            System.out.println("---------------\n" + selectedImage);
+        /*    if (selected != null && !selected.isEmpty()) {
+            // Call extractIValue() or extractJValue() here
+            // This is where you would call getValue() or any other method that depends on selected.peek()
+        }*/
+        
+        System.out.print("The i value is: " + extractIValue());
             //getValue();
         }
-        houseScoreText();
-        guestScoreText();
+
     }
 
     public void randomSelect()
@@ -113,65 +104,54 @@ public class Card extends Compare
     public void shuffle(Queue queue)
     {
         List<String> list = new LinkedList<>(queue);
+
         Collections.shuffle(list);
+
         queue.clear();
         queue.addAll(list);
 
     }
 
-    public void houseScoreText() {
-        World w = getWorld();
-        w.removeText(10, 30);
-        w.showText("Score: " + score, 0, 30, Color.WHITE);
-    }
+    public int extractIValue() {
+        int startIndex = -1; // Initialize the start index of the number
+        int endIndex = -1; // Initialize the end index of the number
+        
 
-    public void guestScoreText() {
-        World w = getWorld();
-        w.removeText(400, 300);
-        w.showText("Score: " + score, 0, 1020, Color.WHITE);
-    }
+        // Determine the card type based on the selected queue
+        if (selected == clubs) {
+            startIndex = selected.peek().indexOf("Clubs") + "Clubs ".length();
+        } else if (selected == diamonds) {
+            startIndex = selected.peek().indexOf("Diamonds") + "Diamonds ".length();
+        } else if (selected == spades) {
+            startIndex = selected.peek().indexOf("Spades") + "Spades ".length();
+        } else if (selected == hearts) {
+            startIndex = selected.peek().indexOf("Hearts") + "Hearts ".length();
+        } else if (selected == kings) {
+            startIndex = selected.peek().indexOf("King") + "King ".length();
+        } else
+        {
+            startIndex = selected.peek().indexOf("Queen") + "Queen ".length();
+        }
 
-    /*public void shuffleSelected() {
-        randomSelect(); // First, select a queue
-        shuffle(selected); // Then shuffle it
-    }*/
-    /*public int getValue()
+        // Find the end index of the number
+        endIndex = selected.peek().indexOf(".png");
+
+        // Extract the substring containing the number
+        String iValueString = selected.peek().substring(startIndex, endIndex);
+        if(selected == kings)
+        {
+            iValueString = "13";
+        }
+        else if(selected == queens)
+        {
+            iValueString = "12";
+        }
+
+        // Convert the substring to an integer and return
+        return Integer.parseInt(iValueString);
+    }
+    public int getI()
     {
-    if(selected.peek() == "Clubs 2.png" || selected.peek() == "Spades 2.png" || selected.peek() == "Diamonds 2.png" ||selected.peek() == "Hearts 2.png")
-    {
-    value = 2;
-
+        return extractIValue();
     }
-    else if(selected.peek() == "Clubs 3.png"|| selected.peek() == "Spades 3.png" || selected.peek() == "Diamonds 3.png" ||selected.peek() == "Hearts 3.png"){
-    value = 3;
-    }
-    else if(selected.peek() == "Clubs 4.png"|| selected.peek() == "Spades 4.png" || selected.peek() == "Diamonds 4.png" ||selected.peek() == "Hearts 4.png"){
-    value = 4;
-    }
-    else if(selected.peek() == "Clubs 5.png"|| selected.peek() == "Spades 5.png" || selected.peek() == "Diamonds 5.png" ||selected.peek() == "Hearts 5.png"){
-    value = 5;
-    }
-    else if(selected.peek() == "Clubs 6.png"||selected.peek() == "Spades 6.png" || selected.peek() == "Diamonds 6.png" ||selected.peek() == "Hearts 6.png"){
-    value = 6;
-
-    }
-    else if(selected.peek() == "Clubs 7.png"|| selected.peek() == "Spades 7.png" || selected.peek() == "Diamonds 7.png" ||selected.peek() == "Hearts 7.png"){
-    value = 7;
-
-    }
-    else if(selected.peek() == "Clubs 8.png"|| selected.peek() == "Spades 8.png" || selected.peek() == "Diamonds 8.png" ||selected.peek() == "Hearts 8.png"){
-    value = 8;
-
-    }
-    else if(selected.peek() == "Clubs 9.png"|| selected.peek() == "Spades 9.png" || selected.peek() == "Diamonds 9.png" ||selected.peek() == "Hearts 9.png"){
-    value = 9;
-    }
-    else if(selected.peek() == "Kings 1.png"|| selected.peek() == "Kings 2.png" || selected.peek() == "Kings 3.png" ||selected.peek() == "Kings 4.png"){
-    value = 13;
-    }
-    else{
-    value = 11;
-    }
-    return value;
-    }*/
 }
