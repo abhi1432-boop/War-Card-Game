@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
 
-public class Card extends Compare
+public class Card extends Actor
 {
     // private MayflowerImage image;
     Queue<String> clubs = new LinkedList<String>();
@@ -17,6 +17,8 @@ public class Card extends Compare
     Queue<String> selected = new LinkedList<String>();
     int i = 0;
     int value;
+    boolean isTrue = false;
+    public int score;
     public Card()
     {
         for(i = 2; i < 10; i++)
@@ -54,24 +56,31 @@ public class Card extends Compare
 
     public void act()
     {
+
         if(Mayflower.isKeyDown(Keyboard.KEY_ENTER))
         {
             randomSelect();
-            shuffle(selected);
+            //shuffle(selected);
             MayflowerImage selectedImage = new MayflowerImage(selected.peek());
             selectedImage.scale(0.5);
             setImage(selectedImage); 
-        /*    if (selected != null && !selected.isEmpty()) {
+            /*    if (selected != null && !selected.isEmpty()) {
             // Call extractIValue() or extractJValue() here
             // This is where you would call getValue() or any other method that depends on selected.peek()
-        }*/
-        
-        System.out.print("The i value is: " + extractIValue());
+            }*/
+            Mayflower.playMusic("sounds/flip.mp3");
+            i = extractIValue();
+            System.out.print("The i value is: " + extractIValue());
+            isTrue = true;
             //getValue();
         }
-
+        houseScoreText();
+        guestScoreText();
     }
-
+     public int getI()
+    {
+        return i;
+    }
     public void randomSelect()
     {
         int random = (int)(Math.random() * 6) + 1;
@@ -115,7 +124,6 @@ public class Card extends Compare
     public int extractIValue() {
         int startIndex = -1; // Initialize the start index of the number
         int endIndex = -1; // Initialize the end index of the number
-        
 
         // Determine the card type based on the selected queue
         if (selected == clubs) {
@@ -150,8 +158,20 @@ public class Card extends Compare
         // Convert the substring to an integer and return
         return Integer.parseInt(iValueString);
     }
-    public int getI()
+
+    public void houseScoreText() {
+        World w = getWorld();
+        w.removeText(10, 30);
+        w.showText("Score: " + score, 0, 30, Color.WHITE);
+    }
+
+    public void guestScoreText() {
+        World w = getWorld();
+        w.removeText(400, 300);
+        w.showText("Score: " + score, 0, 1020, Color.WHITE);
+    }
+    public Queue getQueue()
     {
-        return extractIValue();
+        return selected;
     }
 }

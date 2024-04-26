@@ -7,10 +7,8 @@ public class Map extends World {
 
         setBackground("Solitaire.jpg"); 
         showText("Welcome to War! Press Enter to Start!", getWidth() / 2 - 300, getHeight() / 2, Color.WHITE);
-
     }
 
-   
     public void act() {
         if(gameStarted == false){
 
@@ -21,6 +19,6 @@ public class Map extends World {
             }
 
         }
-    
+
     }
 }

@@ -5,11 +5,11 @@ public class DeckWorld extends World
     public DeckWorld()
     {
         deck = new Deck();
-        addObject(deck, 700, 600);
+        addObject(deck, 400, 400);
         setBackground("Solitaire.jpg");
-        showText("Press Space to Draw a Card!", getWidth() / 2 - 300, getHeight() / 2, Color.WHITE);
-
+        showText("Press Space to Draw a Card!", getWidth() / 2 - 220, getHeight() / 2 - 200, Color.WHITE);
     }
+
     public void act()
     {
         if(Mayflower.isKeyDown(Keyboard.KEY_SPACE))
