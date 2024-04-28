@@ -7,7 +7,7 @@ public class DeckWorld extends World
         deck = new Deck();
         addObject(deck, 400, 400);
         setBackground("Solitaire.jpg");
-        showText("Press Space to Draw a Card!", getWidth() / 2 - 220, getHeight() / 2 - 200, Color.WHITE);
+        showText("Press Space to Begin the Game!", getWidth() / 2 - 220, getHeight() / 2 - 200, Color.WHITE);
     }
 
     public void act()

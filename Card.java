@@ -19,6 +19,7 @@ public class Card extends Actor
     int value;
     boolean isTrue = false;
     public int score;
+    MayflowerImage king;
     public Card()
     {
         for(i = 2; i < 10; i++)
@@ -46,12 +47,12 @@ public class Card extends Actor
         {
             queens.add("Cards/Queen " + i + ".png");
         }
-        /*randomSelect();
-        shuffle(selected);
-        setImage(selected.remove());
-         */
-        //MayflowerImage selectedImage = new MayflowerImage(selected.peek());
-        //selectedImage.scale(0.5);
+        randomSelect();
+        king = new MayflowerImage("Cards/King 1.png");
+        king.scale(0.5);
+        setImage(king);
+        
+        
     }
 
     public void act()
@@ -59,23 +60,27 @@ public class Card extends Actor
 
         if(Mayflower.isKeyDown(Keyboard.KEY_ENTER))
         {
-            randomSelect();
+            //randomSelect();
             //shuffle(selected);
+            //MayflowerImage selectedImage = new MayflowerImage(selected.peek());
+            //selectedImage.scale(0.5);
+            //setImage(selectedImage); 
+             if (selected != null && !selected.isEmpty()) {
             MayflowerImage selectedImage = new MayflowerImage(selected.peek());
             selectedImage.scale(0.5);
             setImage(selectedImage); 
-            /*    if (selected != null && !selected.isEmpty()) {
-            // Call extractIValue() or extractJValue() here
-            // This is where you would call getValue() or any other method that depends on selected.peek()
-            }*/
-            Mayflower.playMusic("sounds/flip.mp3");
-            i = extractIValue();
-            System.out.print("The i value is: " + extractIValue());
-            isTrue = true;
+            }
+            else
+            {
+                System.out.print("Nothing in queue");
+            }
+            //Mayflower.playMusic("sounds/flip.mp3");
+            //i = extractIValue();
+            //System.out.print("The i value is: " + extractIValue());
+            
             //getValue();
         }
-        houseScoreText();
-        guestScoreText();
+        
     }
      public int getI()
     {
@@ -104,13 +109,13 @@ public class Card extends Actor
         {
             selected = kings;
         }
-        else
+        else if(random == 6)
         {
             selected = queens;
         }
     }
 
-    public void shuffle(Queue queue)
+    public void shuffle1(Queue queue)
     {
         List<String> list = new LinkedList<>(queue);
 
@@ -158,19 +163,7 @@ public class Card extends Actor
         // Convert the substring to an integer and return
         return Integer.parseInt(iValueString);
     }
-
-    public void houseScoreText() {
-        World w = getWorld();
-        w.removeText(10, 30);
-        w.showText("Score: " + score, 0, 30, Color.WHITE);
-    }
-
-    public void guestScoreText() {
-        World w = getWorld();
-        w.removeText(400, 300);
-        w.showText("Score: " + score, 0, 1020, Color.WHITE);
-    }
-    public Queue getQueue()
+    public Queue getIQueue()
     {
         return selected;
     }
