@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=SpecialFont
+comment1.params=
+comment1.target=SpecialFont()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Font\n
+comment2.params=
+comment2.target=void\ setFont()
+numComments=3

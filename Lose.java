@@ -6,9 +6,9 @@ public class Lose extends World
      */
     public Lose()
     {
-        Mayflower.playMusic("sounds/win.mp3");
-        showText("YOU LOSE!!",10,30,Color.WHITE);
-        setBackground("Solitaire.jpg");
+        Mayflower.playMusic("sounds/lose.mp3");
+        //showText("YOU LOSE!!",10,30,Color.WHITE);
+        setBackground("lose.png");
     }
 
     public void act()

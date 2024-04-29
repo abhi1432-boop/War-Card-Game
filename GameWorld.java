@@ -1,7 +1,6 @@
 import mayflower.*;
 import java.util.Collections;
 
-
 public class GameWorld extends World
 {
     public Card card;
@@ -32,13 +31,13 @@ public class GameWorld extends World
 
     public void act() 
     {
-     
+
         if (!timerExpired) {
             timer++; // Increment the timer counter
             if (timer >= 50) { // Change 300 to adjust the duration (300 frames ~= 5 seconds)
                 timerExpired = true;
                 shuffleCard();
-            shuffleCard2();// Set the timer as expired after 5 seconds
+                shuffleCard2();// Set the timer as expired after 5 seconds
             }
             return; // Don't proceed with the rest of the code until the timer expires
         }
@@ -49,7 +48,7 @@ public class GameWorld extends World
             shuffleCard2();
             int i = card.extractIValue();
             int j = card2.extractJValue();
-            
+
             if(i > j)
             {
                 showText("You Won!", getWidth() / 2 - 300, getHeight() / 2, Color.WHITE);
@@ -73,41 +72,40 @@ public class GameWorld extends World
                 //card2.shuffle2(card2.getJQueue());
             }
 
-
             // Set the flag to true to indicate shuffling has occurred
             shuffledThisKeyPress = true;
-            
+
         }
         else if (!Mayflower.isKeyDown(Keyboard.KEY_ENTER)) {
             // Reset the flag when Enter key is released
             shuffledThisKeyPress = false;
         }
-    
 
        
     }
-    
+
     public void shuffleCard()
     {
-        
+
         card.randomSelect();
         card.shuffle1(card.getIQueue());
         Mayflower.playMusic("sounds/flip.mp3");
         int i = card.extractIValue();
         System.out.println("The i value is: " + i);
-        
+
     }
+
     public void shuffleCard2()
     {
-        
+
         card2.randomSelect();
         card2.shuffle2(card2.getJQueue());
         Mayflower.playMusic("sounds/flip.mp3");
         int j = card2.extractJValue();
         System.out.println("The j value is: " + j);
-        
+
     }
-    
+
     public void updateScore()
     {
         removeText(10, 30);

@@ -51,10 +51,8 @@ public class Card extends Actor
         king = new MayflowerImage("Cards/King 1.png");
         king.scale(0.5);
         setImage(king);
-        
-        
-    }
 
+    }
     public void act()
     {
 
@@ -65,10 +63,10 @@ public class Card extends Actor
             //MayflowerImage selectedImage = new MayflowerImage(selected.peek());
             //selectedImage.scale(0.5);
             //setImage(selectedImage); 
-             if (selected != null && !selected.isEmpty()) {
-            MayflowerImage selectedImage = new MayflowerImage(selected.peek());
-            selectedImage.scale(0.5);
-            setImage(selectedImage); 
+            if (selected != null && !selected.isEmpty()) {
+                MayflowerImage selectedImage = new MayflowerImage(selected.peek());
+                selectedImage.scale(0.5);
+                setImage(selectedImage); 
             }
             else
             {
@@ -77,15 +75,17 @@ public class Card extends Actor
             //Mayflower.playMusic("sounds/flip.mp3");
             //i = extractIValue();
             //System.out.print("The i value is: " + extractIValue());
-            
+
             //getValue();
         }
-        
+
     }
-     public int getI()
+
+    public int getI()
     {
         return i;
     }
+
     public void randomSelect()
     {
         int random = (int)(Math.random() * 6) + 1;
@@ -163,6 +163,7 @@ public class Card extends Actor
         // Convert the substring to an integer and return
         return Integer.parseInt(iValueString);
     }
+
     public Queue getIQueue()
     {
         return selected;
