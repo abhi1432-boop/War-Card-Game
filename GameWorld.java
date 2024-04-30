@@ -88,7 +88,7 @@ public class GameWorld extends World
     {
 
         card.randomSelect();
-        card.shuffle1(card.getIQueue());
+        card.shuffle(card.getIQueue());
         Mayflower.playMusic("sounds/flip.mp3");
         int i = card.extractIValue();
         System.out.println("The i value is: " + i);
@@ -99,7 +99,7 @@ public class GameWorld extends World
     {
 
         card2.randomSelect();
-        card2.shuffle2(card2.getJQueue());
+        card2.shuffle(card2.getJQueue());
         Mayflower.playMusic("sounds/flip.mp3");
         int j = card2.extractJValue();
         System.out.println("The j value is: " + j);

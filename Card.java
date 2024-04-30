@@ -14,6 +14,8 @@ public class Card extends Actor
     Queue<String> hearts = new LinkedList<String>();
     Queue<String> kings = new LinkedList<String>();
     Queue<String> queens = new LinkedList<String>();
+    Queue<String> aces = new LinkedList<String>();
+    Queue<String> jacks = new LinkedList<String>();
     Queue<String> selected = new LinkedList<String>();
     int i = 0;
     int value;
@@ -46,6 +48,14 @@ public class Card extends Actor
         for(i = 1; i < 5; i++)
         {
             queens.add("Cards/Queen " + i + ".png");
+        }
+        for(i = 1; i < 5; i++)
+        {
+            aces.add("Cards/Ace " + i + ".png");
+        }
+        for(i = 1; i < 5; i++)
+        {
+            jacks.add("Cards/Jack " + i + ".png");
         }
         randomSelect();
         king = new MayflowerImage("Cards/King 1.png");
@@ -88,7 +98,7 @@ public class Card extends Actor
 
     public void randomSelect()
     {
-        int random = (int)(Math.random() * 6) + 1;
+        int random = (int)(Math.random() * 8) + 1;
         if(random == 1)
         {
             selected = clubs;
@@ -113,9 +123,17 @@ public class Card extends Actor
         {
             selected = queens;
         }
+        else if(random == 7)
+        {
+            selected = aces;
+        }
+        else if(random == 8)
+        {
+            selected = jacks;
+        }
     }
 
-    public void shuffle1(Queue queue)
+    public void shuffle(Queue queue)
     {
         List<String> list = new LinkedList<>(queue);
 
@@ -141,9 +159,17 @@ public class Card extends Actor
             startIndex = selected.peek().indexOf("Hearts") + "Hearts ".length();
         } else if (selected == kings) {
             startIndex = selected.peek().indexOf("King") + "King ".length();
-        } else
+        } else if(selected == queens)
         {
             startIndex = selected.peek().indexOf("Queen") + "Queen ".length();
+        }
+        else if(selected == aces)
+        {
+            startIndex = selected.peek().indexOf("Ace") + "Ace ".length();
+        }
+        else if(selected == jacks)
+        {
+            startIndex = selected.peek().indexOf("Jack") + "Jack ".length();
         }
 
         // Find the end index of the number
@@ -158,6 +184,14 @@ public class Card extends Actor
         else if(selected == queens)
         {
             iValueString = "12";
+        }
+        else if(selected == jacks)
+        {
+            iValueString = "11";
+        }
+        else if(selected == aces)
+        {
+            iValueString = "14";
         }
 
         // Convert the substring to an integer and return
