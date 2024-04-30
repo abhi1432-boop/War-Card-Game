@@ -7,7 +7,6 @@ import java.util.Collections;
 
 public class Card2 extends Card
 {
-    // private MayflowerImage image;
     Queue<String> clubs = new LinkedList<String>();
     Queue<String> diamonds = new LinkedList<String>();
     Queue<String> spades = new LinkedList<String>();
@@ -56,37 +55,33 @@ public class Card2 extends Card
             jacks.add("Cards/Jack " + j + ".png");
         }
         randomSelect();
+        
+        // placeholder image
         king = new MayflowerImage("Cards/King 1.png");
         king.scale(0.5);
         setImage(king);
-        
-        
-    }
 
+    }
     public void act()
     {
+        // makes sure queue isnt empty
         if(Mayflower.isKeyDown(Keyboard.KEY_ENTER))
         {
-            //randomSelect();
-            //shuffle(selected);
-            
             if (selected != null && !selected.isEmpty()) 
             {
-            MayflowerImage selectedImage = new MayflowerImage(selected.peek());
-            selectedImage.scale(0.5);
-            setImage(selectedImage); 
+                MayflowerImage selectedImage = new MayflowerImage(selected.peek());
+                selectedImage.scale(0.5);
+                setImage(selectedImage); 
             }
             else
             {
                 System.out.print("Nothing in queue");
             }
-            //Mayflower.playMusic("sounds/flip.mp3");
-            //j = extractJValue();
-            //System.out.println("The j value is: " + extractJValue());
         }
-        
+
     }
 
+    // same as randomSelect method from card class
     public void randomSelect()
     {
         int random = (int)(Math.random() * 8) + 1;
@@ -126,14 +121,15 @@ public class Card2 extends Card
 
     public int getJ()
     {
+        // returns j value
         return j;
     }
 
+    // same as extractIValue from Card class, but extracts j value
     public int extractJValue() {
-        int startIndex = -1; // Initialize the start index of the number
-        int endIndex = -1; // Initialize the end index of the number
+        int startIndex = -1; 
+        int endIndex = -1; 
 
-        // Determine the card type based on the selected queue
         if (selected == clubs) 
         {
             startIndex = selected.peek().indexOf("Clubs") + "Clubs ".length();
@@ -167,10 +163,8 @@ public class Card2 extends Card
             startIndex = selected.peek().indexOf("Jack") + "Jack ".length();
         }
 
-        // Find the end index of the number
         endIndex = selected.peek().indexOf(".png");
 
-        // Extract the substring containing the number
         String jValueString = selected.peek().substring(startIndex, endIndex);
         if(selected == kings)
         {
@@ -189,7 +183,6 @@ public class Card2 extends Card
             jValueString = "14";
         }
 
-        // Convert the substring to an integer and return
         return Integer.parseInt(jValueString);
     }
 

@@ -12,6 +12,7 @@ public class DeckWorld extends World
 
     public void act()
     {
+        // changes world when user presses space
         if(Mayflower.isKeyDown(Keyboard.KEY_SPACE))
         {
             World game = new GameWorld();

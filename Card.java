@@ -24,6 +24,7 @@ public class Card extends Actor
     MayflowerImage king;
     public Card()
     {
+        // Creates a queue for each card type and adds all the images of that card type into each queue
         for(i = 2; i < 10; i++)
         {
             clubs.add("Cards/Clubs " + i + ".png");
@@ -58,6 +59,8 @@ public class Card extends Actor
             jacks.add("Cards/Jack " + i + ".png");
         }
         randomSelect();
+        
+        // Displays a placeholder image
         king = new MayflowerImage("Cards/King 1.png");
         king.scale(0.5);
         setImage(king);
@@ -68,11 +71,8 @@ public class Card extends Actor
 
         if(Mayflower.isKeyDown(Keyboard.KEY_ENTER))
         {
-            //randomSelect();
-            //shuffle(selected);
-            //MayflowerImage selectedImage = new MayflowerImage(selected.peek());
-            //selectedImage.scale(0.5);
-            //setImage(selectedImage); 
+            
+            // Makes sure there are objects in the queue before displaying
             if (selected != null && !selected.isEmpty()) {
                 MayflowerImage selectedImage = new MayflowerImage(selected.peek());
                 selectedImage.scale(0.5);
@@ -82,23 +82,21 @@ public class Card extends Actor
             {
                 System.out.print("Nothing in queue");
             }
-            //Mayflower.playMusic("sounds/flip.mp3");
-            //i = extractIValue();
-            //System.out.print("The i value is: " + extractIValue());
-
-            //getValue();
         }
 
     }
 
     public int getI()
     {
+        // returns i value
         return i;
     }
 
     public void randomSelect()
     {
+        // randomly generates an integer from 1-8
         int random = (int)(Math.random() * 8) + 1;
+        // selects a queue of cards based on the generated integer
         if(random == 1)
         {
             selected = clubs;
@@ -135,10 +133,16 @@ public class Card extends Actor
 
     public void shuffle(Queue queue)
     {
+        // adds all the items from the parameter queue into a LinkedList
         List<String> list = new LinkedList<>(queue);
 
+        /*
+         * utilizes the shuffle method from the java library Collections to 
+         * reorder all the elements inside the linked list
+         */
         Collections.shuffle(list);
 
+        // clears the orignial queue and adds the shuffled items form the LinkedList back into the queue
         queue.clear();
         queue.addAll(list);
 
@@ -148,7 +152,7 @@ public class Card extends Actor
         int startIndex = -1; // Initialize the start index of the number
         int endIndex = -1; // Initialize the end index of the number
 
-        // Determine the card type based on the selected queue
+        // Determine the card type based on the selected queue 
         if (selected == clubs)
         {
             startIndex = selected.peek().indexOf("Clubs") + "Clubs ".length();
@@ -210,6 +214,7 @@ public class Card extends Actor
 
     public Queue getIQueue()
     {
+        // returns the selected queue
         return selected;
     }
 }
