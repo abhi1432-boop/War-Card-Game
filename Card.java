@@ -149,17 +149,27 @@ public class Card extends Actor
         int endIndex = -1; // Initialize the end index of the number
 
         // Determine the card type based on the selected queue
-        if (selected == clubs) {
+        if (selected == clubs)
+        {
             startIndex = selected.peek().indexOf("Clubs") + "Clubs ".length();
-        } else if (selected == diamonds) {
+        } 
+        else if (selected == diamonds) 
+        {
             startIndex = selected.peek().indexOf("Diamonds") + "Diamonds ".length();
-        } else if (selected == spades) {
+        } 
+        else if (selected == spades) 
+        {
             startIndex = selected.peek().indexOf("Spades") + "Spades ".length();
-        } else if (selected == hearts) {
+        }
+        else if (selected == hearts)
+        {
             startIndex = selected.peek().indexOf("Hearts") + "Hearts ".length();
-        } else if (selected == kings) {
+        } 
+        else if (selected == kings) 
+        {
             startIndex = selected.peek().indexOf("King") + "King ".length();
-        } else if(selected == queens)
+        }
+        else if(selected == queens)
         {
             startIndex = selected.peek().indexOf("Queen") + "Queen ".length();
         }
